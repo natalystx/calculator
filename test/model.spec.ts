@@ -1,43 +1,28 @@
 import { OperatorMethods, CalculatorModel } from '../models/calculator.model';
-import { mock } from 'jest-mock-extended';
-
-// jest.mock('../models/calculator.model', () => {
-//   const mockCallback = jest.fn();
-//   return {
-//     OperatorMethods: jest.fn().mockImplementation(() => {
-//       return {
-//         plus: jest.fn().mockImplementation(() => {
-//           return mockCallback;
-//         }),
-//         minus: jest.fn().mockImplementation(() => {
-//           return mockCallback;
-//         }),
-//         divide: jest.fn().mockImplementation(() => {
-//           return mockCallback;
-//         }),
-//         multiply: jest.fn().mockImplementation(() => {
-//           return mockCallback;
-//         }),
-//       };
-//     }),
-//   };
-// });
 
 describe('OperatorMethods is Working', () => {
+  //act
   let model: OperatorMethods;
-
-  function mockCommentCallback(a: number) {
-    (model.plus as jest.Mock).mockImplementation(() => {
-      return a;
-    });
-  }
-
-  beforeAll(() => {
-    model = mock<CalculatorModel>();
-  });
-  test('Is it works?', () => {
-    // mockCommentCallback(3);
+  // arrange
+  model = new CalculatorModel();
+  //assert
+  test('to be defined', () => {
     expect(model).toBeDefined();
-    expect(model.plus(2, 1)).toBe(3);
+  });
+
+  test('plus works', () => {
+    expect(model.plus(2, 2)).toBe(4);
+  });
+
+  test('minus works', () => {
+    expect(model.minus(2, 2)).toBe(0);
+  });
+
+  test('multiply works', () => {
+    expect(model.multiply(2, 2)).toBe(4);
+  });
+
+  test('divide works', () => {
+    expect(model.divide(5, 2)).toBe(2.5);
   });
 });
