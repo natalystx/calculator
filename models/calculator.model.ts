@@ -5,7 +5,7 @@ export interface OperatorMethods {
   divide: (a: number, b: number) => number;
 }
 
-export class CalculatorModel implements OperatorMethods {
+export default class CalculatorModel implements OperatorMethods {
   plus(number1: number, number2: number) {
     return number1 + number2;
   }

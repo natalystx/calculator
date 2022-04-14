@@ -1,28 +1,16 @@
-import { OperatorMethods, CalculatorModel } from '../models/calculator.model';
+import CalculatorModel, { OperatorMethods } from "../models/calculator.model";
+import { MockProxy, mock, mockClear } from "jest-mock-extended";
 
-describe('OperatorMethods is Working', () => {
-  //act
-  let model: OperatorMethods;
-  // arrange
-  model = new CalculatorModel();
-  //assert
-  test('to be defined', () => {
-    expect(model).toBeDefined();
+describe("OperatorMethods is Working", () => {
+  let model: MockProxy<OperatorMethods>;
+
+  beforeAll(() => {
+    model = mock<CalculatorModel>();
+    mockClear(model);
   });
 
-  test('plus works', () => {
-    expect(model.plus(2, 2)).toBe(4);
-  });
-
-  test('minus works', () => {
-    expect(model.minus(2, 2)).toBe(0);
-  });
-
-  test('multiply works', () => {
-    expect(model.multiply(2, 2)).toBe(4);
-  });
-
-  test('divide works', () => {
-    expect(model.divide(5, 2)).toBe(2.5);
+  test("Is it works?", () => {
+    model.plus.mockReturnValue(8);
+    expect(model.plus(2, 1)).toBe(8);
   });
 });
